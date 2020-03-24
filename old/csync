@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# work
+echo 'work'
+rclone copy hostiso:work ~/work -P
+rclone sync ~/work hostiso:work -P
+
+# projects
+echo 'projects'
+rclone copy hostiso:projects ~/projects -P
+rclone sync ~/projects hostiso:projects -P
+
+# doc
+echo 'doc'
+rclone copy hostiso:doc ~/doc -P --retries 10
+rclone sync ~/doc hostiso:doc -P --retries 10
+
+# media
+echo 'media'
+rclone copy hostiso:media ~/media -P --retries 10 -vv
+rclone sync ~/media hostiso:media -P --retries 10 -vv

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ ! -z "$(ls -A ~/threads)" ]; then
+    for f in ~/threads/*; do
+        rm "${f}"
+    done
+fi
+
+for dir in ~/*; do
+    if [ -d "${dir}" ]; then
+        for f in "${dir}"/*; do
+            if [[ $f == *.thr ]]; then
+                fname=${f##*/}
+                fname=${fname%.*}
+                echo "${fname}"
+                ln "${f}" "/home/gray/threads/${fname}"
+            fi
+        done
+    fi
+done

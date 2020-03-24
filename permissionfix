@@ -1,0 +1,17 @@
+#!/bin/bash
+# For when everything gets set to 777, as it does
+
+fix(){
+    for i in "$1"/*;do
+        if [ -d "$i" ];then
+            echo "755 $i"
+            chmod 755 "$i"
+            fix "$i"
+        elif [ -f "$i" ];then
+            echo "644 $i"
+            chmod 644 "$i"
+        fi
+    done
+}
+
+fix "$1"
